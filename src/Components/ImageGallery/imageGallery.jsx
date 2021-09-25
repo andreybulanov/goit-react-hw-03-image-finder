@@ -1,29 +1,21 @@
 import ImageGalleryItem from "../ImageGalleryItem/imageGalleryItem";
+import PropTypes from 'prop-types';
 
 function ImageGallery({ images, onSelect, selectImg }) {
   return (
-      <ul className="ImageGallery">
-          
+      <ul className="ImageGallery">      
               {images.map((image, id) => (
                 <ImageGalleryItem key={id} image={image}
                   onClick ={()=> onSelect(image)}
                />
             ))}
-          
-      {/* {images.map(image => 
-        <ImageGalleryItem
-        //   id={image.id}
-          key={image.id}
-          webImage={image.webformatURL}
-          largeUrl={image.largeImageURL}
-          onSelect={selectImg}
-          />         
-      )} */}
     </ul>
   );
 }
- 
 
 export default ImageGallery;
 
- 
+ ImageGallery.propTypes = {
+    images: PropTypes.arrayOf(PropTypes.object),
+    onSelect: PropTypes.func,
+};

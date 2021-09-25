@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Overlay, ContentModal } from './Modal.Styled';
-// import { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom';
 
-// const modalRoot = document.querySelector('#modal-root');
+const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends Component {
   componentDidMount() {
@@ -28,15 +28,15 @@ class Modal extends Component {
   render() {
     const { src, alt} = this.props;
     const { handleBackDropClick } = this;
-    return (
+    return createPortal(
       <>
         <Overlay onClick={handleBackDropClick}>
           <ContentModal>
             <img src={src} alt={alt} />
           </ContentModal>
         </Overlay>
-      </>
-      // modalRoot,
+      </>,
+      modalRoot,
     );
   }
 }
